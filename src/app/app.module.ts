@@ -3,6 +3,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
 import { AccountModule } from '@core/account';
 import { AuthModule } from '@core/auth';
+import { HospitalModule } from '@core/hospital';
 
 import { GlobalConfigurationModule } from '@global/config';
 import { GlobalJwtModule } from '@global/jwt';
@@ -18,6 +19,7 @@ import { SurveyModule } from 'src/survey/survey.module';
     GlobalTypeOrmModule,
     AccountModule,
     AuthModule,
+    HospitalModule,
     CalendarModule,
     ContentsModule,
     SurveyModule,
