@@ -6,39 +6,38 @@ import { SurveyRepository } from './survey.repository';
 
 @Injectable()
 export class SurveyService {
-    constructor(
-        @InjectRepository(SurveyRepository)
-        private SurveyRepository: SurveyRepository,
+  constructor(
+    @InjectRepository(SurveyRepository)
+    private SurveyRepository: SurveyRepository,
+  ) {}
 
-    ){}
-    
-    async getAllSurveys(): Promise<Survey[]> {
-        const query = await this.SurveyRepository.createQueryBuilder('Survey');
-        
-        const Surveys = await query.getMany();
+  async getAllSurveys(): Promise<Survey[]> {
+    const query = await this.SurveyRepository.createQueryBuilder('Survey');
 
-        return Surveys;
+    const Surveys = await query.getMany();
+
+    return Surveys;
+  }
+
+  async getSurveyById(Id: number): Promise<Survey> {
+    const found = await this.SurveyRepository.findOne(Id);
+
+    if (!found) {
+      throw new NotFoundException(`Can't find Survey ${Id}`);
     }
 
-    async getSurveyById(Id: number): Promise<Survey> {
-        const found = await this.SurveyRepository.findOne(Id);
+    return found;
+  }
 
-        if(!found) {
-            throw new NotFoundException(`Can't find Survey ${Id}`);
-        }
+  createSurvey(createSurveyDto: CreateSurveyDto): Promise<Survey> {
+    return this.SurveyRepository.createSurvey(createSurveyDto);
+  }
 
-        return found;
+  async deleteSurvey(Id: number): Promise<void> {
+    const result = await this.SurveyRepository.delete(Id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Can't find Survey with id ${Id}`);
     }
-
-    createSurvey(createSurveyDto: CreateSurveyDto) : Promise<Survey> {
-        return this.SurveyRepository.createSurvey(createSurveyDto);
-    }
-
-    async deleteSurvey(Id: number) : Promise<void> {
-        const result = await this.SurveyRepository.delete(Id);
-
-        if(result.affected === 0) {
-            throw  new NotFoundException(`Can't find Survey with id ${Id}`);
-        }
-    }
+  }
 }
