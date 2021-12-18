@@ -21,6 +21,7 @@
       "@app/*": ["src/app/*"],
       "@global/*": ["src/global/*"],
       "@utils/*": ["src/utils/*"],
+      "@core/*": ["src/core/*"],
     },
   },
 }
