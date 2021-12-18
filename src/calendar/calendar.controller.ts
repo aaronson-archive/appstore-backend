@@ -14,7 +14,7 @@ export class CalendarController {
     constructor(private calendarService: CalendarService) { }
     
     @Get()
-    getAllBoard(
+    getAllCalendar(
         @GetUser() account: Account
         ): Promise<Calendar[]> {
             this.logger.verbose(`User ${account.nickName} trying to get all Calendar`);
@@ -22,12 +22,12 @@ export class CalendarController {
     }
 
     @Get('/:id')
-    getBoardById(@Param('id') id: number): Promise<Calendar> {
+    getCalendarById(@Param('id') id: number): Promise<Calendar> {
         return this.calendarService.getCalendarById(id);
     }
 
     @Post()
-    createBoard(@Body() createCalendarDto: CreateCalendarDto,
+    createCalendar(@Body() createCalendarDto: CreateCalendarDto,
     @GetUser() account: Account): Promise<Calendar> {
         this.logger.verbose(`User ${account.nickName} created a new calendar.
         Payload: ${JSON.stringify(createCalendarDto)}`);
@@ -35,14 +35,14 @@ export class CalendarController {
     }
 
     @Delete('/:id')
-    deleteBoard(@Param('id') id: number,
+    deleteCalendar(@Param('id') id: number,
     @GetUser() account: Account
     ): Promise<void> {
         return this.calendarService.deleteCalendar(id, account);
     }
 
     @Patch('/:id')
-    updatecalendartatus(
+    updatecalendar(
         @Param('id') id: number): Promise<Calendar> {
         return this.calendarService.updateCalendar(id);
     }
