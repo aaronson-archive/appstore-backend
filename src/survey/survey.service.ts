@@ -1,3 +1,4 @@
+import { Account } from '@core/account/entities';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateSurveyDto } from './dto/survey.dto';
@@ -11,7 +12,9 @@ export class SurveyService {
     private SurveyRepository: SurveyRepository,
   ) {}
 
-  async getAllSurveys(): Promise<Survey[]> {
+  async getAllSurveys(
+      account: Account,
+  ): Promise<Survey[]> {
     const query = await this.SurveyRepository.createQueryBuilder('Survey');
 
     const Surveys = await query.getMany();

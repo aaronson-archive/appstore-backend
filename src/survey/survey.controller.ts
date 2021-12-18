@@ -25,7 +25,7 @@ export class SurveyController {
   @Get()
   getAllSurvey(@GetUser() account: Account): Promise<Survey[]> {
     this.logger.verbose(`User ${account.nickName} trying to get all Survey`);
-    return this.surveyService.getAllSurveys();
+    return this.surveyService.getAllSurveys(account);
   }
 
   @Get('/:id')
@@ -42,5 +42,4 @@ export class SurveyController {
         Payload: ${JSON.stringify(createSurveyDto)}`);
         return this.surveyService.createSurvey(createSurveyDto);
     }
-
 }
