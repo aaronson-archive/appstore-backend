@@ -6,31 +6,29 @@ import { SurveyRepository } from './survey.repository';
 
 @Injectable()
 export class SurveyService {
-    constructor(
-        @InjectRepository(SurveyRepository)
-        private SurveyRepository: SurveyRepository,
+  constructor(
+    @InjectRepository(SurveyRepository)
+    private SurveyRepository: SurveyRepository,
+  ) {}
 
-    ){}
-    
-    async getAllSurveys(): Promise<Survey[]> {
-        const query = await this.SurveyRepository.createQueryBuilder('Survey');
-        
-        const Surveys = await query.getMany();
+  async getAllSurveys(): Promise<Survey[]> {
+    const query = await this.SurveyRepository.createQueryBuilder('Survey');
 
-        return Surveys;
+    const Surveys = await query.getMany();
+
+    return Surveys;
+  }
+
+  async getSurveyById(Id: number): Promise<Survey> {
+    const found = await this.SurveyRepository.findOne(Id);
+
+    if (!found) {
+      throw new NotFoundException(`Can't find Survey ${Id}`);
     }
+    return found;
+  }
 
-    async getSurveyById(Id: number): Promise<Survey> {
-        const found = await this.SurveyRepository.findOne(Id);
-
-        if(!found) {
-            throw new NotFoundException(`Can't find Survey ${Id}`);
-        }
-
-        return found;
-    }
-
-    createSurvey(createSurveyDto: CreateSurveyDto) : Promise<Survey> {
-        return this.SurveyRepository.createSurvey(createSurveyDto);
-    }
+  createSurvey(createSurveyDto: CreateSurveyDto): Promise<Survey> {
+    return this.SurveyRepository.createSurvey(createSurveyDto);
+  }
 }

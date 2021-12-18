@@ -1,3 +1,4 @@
+import { Account } from '@core/account/entities';
 import { AuthModule } from '@core/auth';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -6,11 +7,9 @@ import { SurveyRepository } from './survey.repository';
 import { SurveyService } from './survey.service';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([SurveyRepository]),
-        AuthModule
-      ],
-      controllers: [SurveyController],
-      providers: [SurveyService]
+  imports: [TypeOrmModule.forFeature([Account]), AuthModule],
+  controllers: [SurveyController],
+  providers: [SurveyRepository, SurveyService],
+  exports: [TypeOrmModule],
 })
 export class SurveyModule {}
