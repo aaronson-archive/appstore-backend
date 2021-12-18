@@ -4,11 +4,12 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CalendarController } from './calendar.controller';
 import { CalendarService } from './calendar.service';
+import { CalendarRepository } from './calender.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Account]), AuthModule],
   controllers: [CalendarController],
-  providers: [CalendarService],
+  providers: [CalendarRepository, CalendarService],
   exports: [TypeOrmModule],
 })
 export class CalendarModule {}

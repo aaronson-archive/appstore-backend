@@ -7,51 +7,51 @@ import { Account } from './../core/account/entities/account.entity';
 
 @Injectable()
 export class CalendarService {
-    constructor(
-        @InjectRepository(CalendarRepository)
-        private CalendarRepository: CalendarRepository,
+  constructor(
+    @InjectRepository(CalendarRepository)
+    private CalendarRepository: CalendarRepository,
+  ) {}
 
-    ){}
-    
-    async getAllCalendars(
-        account: Account,
-    ): Promise<Calendar[]> {
-        const query = await this.CalendarRepository.createQueryBuilder('Calendar');
+  async getAllCalendars(account: Account): Promise<Calendar[]> {
+    const query = await this.CalendarRepository.createQueryBuilder('Calendar');
 
-        query.where('Calendar.userId = :userId', { userId: account.id });
-        
-        const Calendars = await query.getMany();
+    query.where('Calendar.userId = :userId', { userId: account.id });
 
-        return Calendars;
+    const Calendars = await query.getMany();
+
+    return Calendars;
+  }
+
+  async getCalendarById(id: number): Promise<Calendar> {
+    const found = await this.CalendarRepository.findOne(id);
+
+    if (!found) {
+      throw new NotFoundException(`Can't find Calendar ${id}`);
     }
 
-    async getCalendarById(id: number): Promise<Calendar> {
-        const found = await this.CalendarRepository.findOne(id);
+    return found;
+  }
 
-        if(!found) {
-            throw new NotFoundException(`Can't find Calendar ${id}`);
-        }
+  createCalendar(
+    createCalendarDto: CreateCalendarDto,
+    account: Account,
+  ): Promise<Calendar> {
+    return this.CalendarRepository.createCalendar(createCalendarDto, account);
+  }
 
-        return found;
+  async deleteCalendar(id: number, account: Account): Promise<void> {
+    const result = await this.CalendarRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Can't find Calendar with id ${id}`);
     }
+  }
 
-    createCalendar(createCalendarDto: CreateCalendarDto, account: Account) : Promise<Calendar> {
-        return this.CalendarRepository.createCalendar(createCalendarDto, account);
-    }
+  async updateCalendar(id: number): Promise<Calendar> {
+    const Calendar = await this.getCalendarById(id);
 
-    async deleteCalendar(id: number, account: Account) : Promise<void> {
-        const result = await this.CalendarRepository.delete(id);
+    await this.CalendarRepository.save(Calendar);
 
-        if(result.affected === 0) {
-            throw  new NotFoundException(`Can't find Calendar with id ${id}`);
-        }
-    }
-
-    async updateCalendar(id: number) : Promise<Calendar> {
-        const Calendar = await this.getCalendarById(id);
-
-        await this.CalendarRepository.save(Calendar);
-
-        return Calendar;
-    }
+    return Calendar;
+  }
 }
