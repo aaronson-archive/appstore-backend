@@ -7,14 +7,14 @@ import {
 
 export abstract class BaseElementEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  public readonly id: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createdAt: Date;
+  public readonly createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updatedAt: Date;
+  public readonly updatedAt: Date;
 
   @DeleteDateColumn({ type: 'timestamp', nullable: true })
-  deletedAt?: Date | null;
+  public readonly deletedAt?: Date | null;
 }
