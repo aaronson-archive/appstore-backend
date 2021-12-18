@@ -33,12 +33,4 @@ export class SurveyService {
     createSurvey(createSurveyDto: CreateSurveyDto) : Promise<Survey> {
         return this.SurveyRepository.createSurvey(createSurveyDto);
     }
-
-    async deleteSurvey(Id: number) : Promise<void> {
-        const result = await this.SurveyRepository.delete(Id);
-
-        if(result.affected === 0) {
-            throw  new NotFoundException(`Can't find Survey with id ${Id}`);
-        }
-    }
 }

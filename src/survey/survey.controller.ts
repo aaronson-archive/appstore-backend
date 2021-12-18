@@ -33,10 +33,4 @@ export class SurveyController {
         Payload: ${JSON.stringify(createSurveyDto)}`);
         return this.surveyService.createSurvey(createSurveyDto);
     }
-
-    @Delete('/:id')
-    deleteSurvey(@Param('id') id: number,
-    ): Promise<void> {
-        return this.surveyService.deleteSurvey(id);
-    }
 }
