@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseElementEntity } from '@global/entities';
+import { Survey } from './../../../survey/survey.entity';
 
 @Entity()
 export class Account extends BaseElementEntity {
@@ -23,4 +24,7 @@ export class Account extends BaseElementEntity {
 
   @Column('boolean')
   privacyCheck: boolean;
+
+  @OneToMany(type => Survey, survey => survey.user, { eager: true})
+  Survey: Survey[];
 }
