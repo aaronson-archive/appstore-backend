@@ -11,6 +11,7 @@ import { GlobalTypeOrmModule } from '@global/typeorm';
 import { CalendarModule } from 'src/calendar/calendar.module';
 import { ContentsModule } from 'src/contents/contents.module';
 import { SurveyModule } from 'src/survey/survey.module';
+import { ContentModule } from '@core/content/content.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { SurveyModule } from 'src/survey/survey.module';
     CalendarModule,
     ContentsModule,
     SurveyModule,
+    ContentModule,
   ],
 })
 export class AppModule implements NestModule {

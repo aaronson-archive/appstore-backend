@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { createQueryBuilder, EntityRepository, getRepository } from 'typeorm';
 import { Account } from '../entities';
 import { CreateAccountDto } from '../dto';
