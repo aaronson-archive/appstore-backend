@@ -4,12 +4,10 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AccountModule } from '@core/account';
 import { AuthModule } from '@core/auth';
 import { HospitalModule } from '@core/hospital';
-
 import { GlobalConfigurationModule } from '@global/config';
 import { GlobalJwtModule } from '@global/jwt';
 import { GlobalTypeOrmModule } from '@global/typeorm';
 import { CalendarModule } from 'src/calendar/calendar.module';
-import { ContentsModule } from 'src/contents/contents.module';
 import { SurveyModule } from 'src/survey/survey.module';
 import { ContentModule } from '@core/content/content.module';
 
@@ -22,7 +20,6 @@ import { ContentModule } from '@core/content/content.module';
     AuthModule,
     HospitalModule,
     CalendarModule,
-    ContentsModule,
     SurveyModule,
     ContentModule,
   ],
