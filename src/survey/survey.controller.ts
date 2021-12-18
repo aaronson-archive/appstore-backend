@@ -40,11 +40,7 @@ export class SurveyController {
   ): Promise<Survey> {
     this.logger.verbose(`User ${account.nickName} created a new Survey.
         Payload: ${JSON.stringify(createSurveyDto)}`);
-    return this.surveyService.createSurvey(createSurveyDto);
-  }
+        return this.surveyService.createSurvey(createSurveyDto);
+    }
 
-  @Delete('/:id')
-  deleteSurvey(@Param('id') id: number): Promise<void> {
-    return this.surveyService.deleteSurvey(id);
-  }
 }
