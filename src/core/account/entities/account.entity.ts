@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseElementEntity } from '@global/entities';
 import { Survey } from './../../../survey/survey.entity';
-
+import { Calendar } from '../../../calendar/calendar.entity';
 @Entity()
 export class Account extends BaseElementEntity {
   @Column('varchar')
@@ -27,4 +27,7 @@ export class Account extends BaseElementEntity {
 
   @OneToMany(type => Survey, survey => survey.user, { eager: true})
   Survey: Survey[];
+
+  @OneToMany(type => Calendar, calendar => calendar.user, { eager: true})
+  calendar: Calendar;
 }

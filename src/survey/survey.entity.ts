@@ -1,5 +1,5 @@
 import { BaseElementEntity } from '@global/entities';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { Account } from './../core/account/entities';
 @Entity()
 export class Survey extends BaseElementEntity {
