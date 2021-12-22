@@ -8,7 +8,7 @@ import { entities } from '@global/typeorm';
     ConfigModule,
     TypeOrmModule.forRootAsync({
       useFactory: async (configService: ConfigService) => ({
-        type: 'mariadb',
+        type: 'mysql',
         host: configService.get('typeorm.host'),
         port: configService.get('typeorm.port'),
         database: configService.get('typeorm.database'),
