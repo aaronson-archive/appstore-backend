@@ -9,8 +9,9 @@ import { CalendarRepository } from './calender.repository';
 
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt'}),
-    TypeOrmModule.forFeature([Account]), AuthModule
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    TypeOrmModule.forFeature([Account]),
+    AuthModule,
   ],
   controllers: [CalendarController],
   providers: [CalendarRepository, CalendarService],

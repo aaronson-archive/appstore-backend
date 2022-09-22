@@ -12,8 +12,8 @@ async function create() {
   });
 
   app.enableCors({
-    origin: ['http://localhost'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true,
   });
 

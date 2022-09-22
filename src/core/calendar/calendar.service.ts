@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Calendar } from './calendar.entity';
 import { CalendarRepository } from './calender.repository';
 import { CreateCalendarDto } from './dto/calendar.dto';
-import { Account } from './../core/account/entities/account.entity';
+import { Account } from '../account/entities/account.entity';
 
 @Injectable()
 export class CalendarService {

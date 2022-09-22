@@ -7,8 +7,8 @@ import { HospitalModule } from '@core/hospital';
 import { GlobalConfigurationModule } from '@global/config';
 import { GlobalJwtModule } from '@global/jwt';
 import { GlobalTypeOrmModule } from '@global/typeorm';
-import { CalendarModule } from 'src/calendar/calendar.module';
-import { SurveyModule } from 'src/survey/survey.module';
+import { CalendarModule } from '@core/calendar/calendar.module';
+import { SurveyModule } from '@core/survey/survey.module';
 import { ContentModule } from '@core/content/content.module';
 
 @Module({

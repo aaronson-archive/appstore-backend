@@ -9,8 +9,9 @@ import { SurveyService } from './survey.service';
 
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt'}),
-    TypeOrmModule.forFeature([Account]), AuthModule
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    TypeOrmModule.forFeature([Account]),
+    AuthModule,
   ],
   controllers: [SurveyController],
   providers: [SurveyRepository, SurveyService],
